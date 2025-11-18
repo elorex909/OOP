@@ -243,6 +243,8 @@
             font-weight: 600;
             transition: var(--transition);
             box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -268,6 +270,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             cursor: pointer;
+            transform: translateY(0);
         }
 
         .light-mode .chapter-card {
@@ -285,7 +288,7 @@
         }
 
         .chapter-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-color: rgba(99, 102, 241, 0.2);
         }
@@ -306,6 +309,11 @@
             font-weight: bold;
             color: white;
             font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .chapter-card:hover .chapter-icon {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .chapter-title {
@@ -313,6 +321,11 @@
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .chapter-card:hover .chapter-title {
+            color: var(--accent-primary);
         }
 
         .chapter-description {
@@ -404,12 +417,24 @@
         }
 
         .code-snippet pre {
-            color: var(--text-secondary);
             font-family: 'Monaco', 'Consolas', monospace;
             font-size: 0.9rem;
             line-height: 1.5;
             white-space: pre-wrap;
+            color: var(--text-secondary);
+            margin: 0;
         }
+
+        /* Syntax highlighting colors - VSCode Dark+ theme */
+        .code-keyword { color: #569CD6; }
+        .code-type { color: #4EC9B0; }
+        .code-string { color: #CE9178; }
+        .code-comment { color: #6A9955; font-style: italic; }
+        .code-number { color: #B5CEA8; }
+        .code-function { color: #DCDCAA; }
+        .code-operator { color: #D4D4D4; }
+        .code-preprocessor { color: #C586C0; }
+        .code-variable { color: #9CDCFE; }
 
         .takeaway {
             background: rgba(20, 184, 166, 0.1);
@@ -654,14 +679,12 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
     <div class="theme-toggle" id="themeToggle">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo" onclick="showPage('home')">OOP<span class="logo-dot">.</span></a>
@@ -672,54 +695,47 @@
         </div>
     </header>
 
-    <!-- Home Page -->
     <div id="home" class="page active">
         <div class="home-page">
             <div class="hero">
                 <div class="hero-content">
                     <h1>Master Object-Oriented Programming</h1>
                     <p>Clear, concise OOP summaries with real examples and practical explanations.</p>
-                    <a href="#chapter1" class="cta-button" onclick="showPage('chapter1')">Start Learning</a>
+                    <button class="cta-button" onclick="showPage('chapter1')">Start Learning</button>
                 </div>
             </div>
 
             <div class="chapters-grid">
-                <!-- Chapter 1 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter1')">
                     <div class="chapter-icon">1</div>
                     <h3 class="chapter-title">Review On Pointers</h3>
                     <p class="chapter-description">Understanding memory allocation, address operators, and pointer variables in C++.</p>
                 </div>
 
-                <!-- Chapter 2 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter2')">
                     <div class="chapter-icon">2</div>
                     <h3 class="chapter-title">Review on Functions</h3>
                     <p class="chapter-description">Master function organization, reusability, and parameter passing techniques.</p>
                 </div>
 
-                <!-- Chapter 3 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter3')">
                     <div class="chapter-icon">3</div>
                     <h3 class="chapter-title">Review on Structures</h3>
                     <p class="chapter-description">Learn about compound data types and their role as the foundation for classes.</p>
                 </div>
 
-                <!-- Chapter 4 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter4')">
                     <div class="chapter-icon">4</div>
                     <h3 class="chapter-title">Structured vs OOP</h3>
                     <p class="chapter-description">Discover why OOP was created and how it improves upon structured programming.</p>
                 </div>
 
-                <!-- Chapter 5 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter5')">
                     <div class="chapter-icon">5</div>
                     <h3 class="chapter-title">Basic Concepts of OOP</h3>
                     <p class="chapter-description">Explore the four main pillars: Encapsulation, Abstraction, Inheritance, and Polymorphism.</p>
                 </div>
 
-                <!-- Chapter 6 -->
                 <div class="chapter-card fade-in" onclick="showPage('chapter6')">
                     <div class="chapter-icon">6</div>
                     <h3 class="chapter-title">Classes in C++</h3>
@@ -727,11 +743,10 @@
                 </div>
             </div>
 
-            <!-- Ask Question Section in Home -->
             <div class="ask-question">
                 <div class="form-container">
                     <h2 class="form-title">Ask a Question</h2>
-                    <form id="question-form" action="https://formspree.io/f/mldaopok" method="POST">
+                    <form id="question-form" action="https://formspree.io/f/xldaynlq" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" class="form-control" required>
@@ -767,7 +782,6 @@
         </div>
     </div>
 
-    <!-- Chapter 1 Page -->
     <div id="chapter1" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 1: Review On Pointers</h1>
@@ -829,7 +843,6 @@ cout << *(valptr + 1);  // Output: 7</pre>
         </div>
     </div>
 
-    <!-- Chapter 2 Page -->
     <div id="chapter2" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 2: Review on Functions</h1>
@@ -901,7 +914,6 @@ int divide(int a, int b = 2) {
         </div>
     </div>
 
-    <!-- Chapter 3 Page -->
     <div id="chapter3" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 3: Review on Structures</h1>
@@ -980,7 +992,6 @@ struct employee {
         </div>
     </div>
 
-    <!-- Chapter 4 Page -->
     <div id="chapter4" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 4: Structured Programming vs OOP</h1>
@@ -1110,7 +1121,6 @@ public:
         </div>
     </div>
 
-    <!-- Chapter 5 Page -->
     <div id="chapter5" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 5: Basic Concepts of OOP</h1>
@@ -1160,10 +1170,10 @@ public:
 
 // Objects: Instances of the class
 HumanBeing ahmed("Ahmed", 25);  // Object 1
-HumanBeing rasha("Rasha", 22);  // Object 2
+HumanBeing mariam("Mariam", 22);  // Object 2
 
 ahmed.walk();  // Output: Ahmed is walking
-rasha.talk();  // Output: Rasha is talking</pre>
+mariam.talk();  // Output: Mariam is talking</pre>
                 </div>
             </div>
 
@@ -1204,12 +1214,12 @@ public:
 
 // Using inheritance
 Male ahmed("Ahmed", 25);
-Female rasha("Rasha", 22);
+Female mariam("Mariam", 22);
 
 ahmed.walk();      // Inherited from HumanBeing
 ahmed.shave();     // Specific to Male
-rasha.talk();      // Inherited from HumanBeing
-rasha.applyMakeup(); // Specific to Female</pre>
+mariam.talk();      // Inherited from HumanBeing
+mariam.applyMakeup(); // Specific to Female</pre>
                 </div>
             </div>
 
@@ -1280,7 +1290,6 @@ int main() {
         </div>
     </div>
 
-    <!-- Chapter 6 Page -->
     <div id="chapter6" class="page chapter-page">
         <div class="chapter-content">
             <h1 class="section-title">Chapter 6: Classes in C++</h1>
@@ -1435,12 +1444,11 @@ circle.setRadius(-5);      // Error: Radius must be positive</pre>
         </div>
     </div>
 
-    <!-- Ask Question Page -->
     <div id="ask" class="page">
         <div class="chapter-page">
             <div class="form-container">
                 <h1 class="section-title">Ask a Question</h1>
-                <form id="question-form-ask" action="https://formspree.io/f/mldaopok" method="POST">
+                <form id="question-form-ask" action="https://formspree.io/f/xldaynlq" method="POST">
                     <div class="form-group">
                         <label for="name-ask">Name</label>
                         <input type="text" id="name-ask" name="name" class="form-control" required>
@@ -1481,7 +1489,6 @@ circle.setRadius(-5);      // Error: Radius must be positive</pre>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">OOP<span class="logo-dot">.</span></div>
@@ -1494,73 +1501,130 @@ circle.setRadius(-5);      // Error: Radius must be positive</pre>
     </footer>
 
     <script>
-        // Page Navigation
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigation
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            return false;
+    // Page Navigation
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Show selected page
+        document.getElementById(pageId).classList.add('active');
+        
+        // Update navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+        
+        return false;
+    }
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        
+        // Update toggle icon
+        const icon = themeToggle.querySelector('svg');
+        if (body.classList.contains('light-mode')) {
+            icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>';
+        } else {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
         }
+    });
 
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
+    // Form submission handling
+    document.getElementById('question-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('success-message').style.display = 'block';
+        this.reset();
+    });
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            
-            // Update toggle icon
-            const icon = themeToggle.querySelector('svg');
-            if (body.classList.contains('light-mode')) {
-                icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>';
-            } else {
-                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+    document.getElementById('question-form-ask')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('success-message-ask').style.display = 'block';
+        this.reset();
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
             }
         });
+    }, observerOptions);
 
-        // Form submission handling
-        document.getElementById('question-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('success-message').style.display = 'block';
-            this.reset();
+    document.querySelectorAll('.chapter-card').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Add syntax highlighting to code snippets - FIXED SAFE VERSION
+    function highlightCode() {
+        const codeSnippets = document.querySelectorAll('.code-snippet pre');
+        
+        codeSnippets.forEach(snippet => {
+            let code = snippet.textContent; // Safe: Get plain text, not innerHTML with confusing tags
+            
+            // Escape HTML entities first
+            code = code.replace(/&/g, "&amp;")
+                       .replace(/</g, "&lt;")
+                       .replace(/>/g, "&gt;")
+                       .replace(/"/g, "&quot;")
+                       .replace(/'/g, "&#039;");
+            
+            // Apply syntax highlighting using placeholders to avoid recursive matching
+            // We use @@CLASSNAME@@ as a placeholder and replace it at the very end
+            
+            // 1. Strings (Handle first to avoid matching keywords inside strings)
+            code = code.replace(/&quot;(.*?)&quot;/g, 
+                '<span @@="code-string">&quot;$1&quot;</span>');
+            
+            // 2. Comments
+            code = code.replace(/\/\/.*$/gm, 
+                '<span @@="code-comment">$&</span>');
+            
+            // 3. Keywords
+            // Note: We use a temporary placeholder for the class attribute to avoid matching "class" keyword
+            code = code.replace(/\b(class|struct|public|private|protected|virtual|override|new|delete|return|void|int|float|double|string|bool|char|if|else|for|while|const|static|this)\b/g, 
+                '<span @@="code-keyword">$1</span>');
+            
+            // 4. Types (Common types not in keywords)
+            code = code.replace(/\b(vector|map|set|pair)\b/g, 
+                '<span @@="code-type">$1</span>');
+            
+            // 5. Numbers
+            code = code.replace(/\b(\d+\.?\d*)\b/g, 
+                '<span @@="code-number">$1</span>');
+            
+            // 6. Functions (words followed by parenthesis)
+            code = code.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?=\()/g, 
+                '<span @@="code-function">$1</span>');
+
+            // 7. Operators
+            code = code.replace(/(&amp;|\*|-&gt;|\.|&lt;&lt;|&gt;&gt;)/g, 
+                '<span @@="code-operator">$1</span>');
+            
+            // FINAL STEP: Replace the placeholder @@ with "class"
+            // This ensures we didn't match the "class" inside <span class="...">
+            code = code.replace(/@@=/g, 'class=');
+            
+            snippet.innerHTML = code;
         });
+    }
 
-        document.getElementById('question-form-ask')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('success-message-ask').style.display = 'block';
-            this.reset();
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.chapter-card').forEach(card => {
-            observer.observe(card);
-        });
+    // Run syntax highlighting when page loads
+    document.addEventListener('DOMContentLoaded', highlightCode);
     </script>
 </body>
 </html>
