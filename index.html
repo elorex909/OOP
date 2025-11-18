@@ -1588,7 +1588,7 @@ circle.setRadius(-5);      // Error: Radius must be positive</pre>
             
             // 1. Strings (Handle first to avoid matching keywords inside strings)
             code = code.replace(/&quot;(.*?)&quot;/g, 
-                '<span @@="code-string">&quot;$1&quot;</span>');
+                '<span @@="code-&quot;$1&quot;</span>');
             
             // 2. Comments
             code = code.replace(/\/\/.*$/gm, 
